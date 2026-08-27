@@ -559,13 +559,13 @@ PanelWindow {
          Rectangle {
             id: rightrightPanel
             Layout.alignment: Qt.AlignVCenter
-            implicitWidth: math.round(rightrightCol.implicitWidth + 48)
-            implicitHeight: math.round(rightrightCol.implicitHeight + 48)
+            implicitWidth: rightrightCol.implicitWidth + 48
+            implicitHeight: rightrightCol.implicitHeight + 48
             color: Qt.rgba(backend.theme.background.r, backend.theme.background.g, backend.theme.background.b, 0.55)
             radius: 10
             border.width: 1
             border.color: Qt.rgba(backend.theme.accent.r, backend.theme.accent.g, backend.theme.accent.b, 0.5)
-            //clip: true
+            clip: true
 
             Repeater {
                 model: 4
