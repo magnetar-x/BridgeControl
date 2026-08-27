@@ -268,7 +268,7 @@ PanelWindow {
                     height: 1
                     color: Qt.rgba(backend.theme.accent.r, backend.theme.accent.g, backend.theme.accent.b, 0.25)
                 }
-                Gauge { value: backend.cpuFanRpm; label: "CPU FAN"; unit: "RPM" }
+                Gauge { value: backend.cpuFanRpm > 0 ? (backend.cpuFanRpm / 7000) * 100 : 0;textOverride: backend.cpuFanRpm < 0 ? "--" : Math.round(backend.cpuFanRpm).toString();label: "CPU FAN"; unit: "RPM" }
                 }
         }
  
@@ -601,7 +601,7 @@ PanelWindow {
                     height: 1
                     color: Qt.rgba(backend.theme.accent.r, backend.theme.accent.g, backend.theme.accent.b, 0.25)
                 }
-                Gauge { value: backend.gpuFanRpm; label: "GPU FAN"; unit: "RPM" }
+                Gauge { value: backend.gpuFanRpm > 0 ? (backend.gpuFanRpm / 7000) * 100 : 0;textOverride: backend.gpuFanRpm < 0 ? "--" : Math.round(backend.gpuFanRpm).toString(); label: "GPU FAN"; unit: "RPM" }
               }
             }
         //Right Most Gauge
