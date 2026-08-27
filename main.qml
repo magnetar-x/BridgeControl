@@ -263,6 +263,11 @@ PanelWindow {
                 spacing: 24
                 
                 Gauge { value: backend.cpuTemp; label: "CPU TEMP"; unit: " °C" }
+                Rectangle {
+                    Layout.fillWidth: true
+                    height: 1
+                    color: Qt.rgba(backend.theme.accent.r, backend.theme.accent.g, backend.theme.accent.b, 0.25)
+                }
                 Gauge { value: backend.cpuFanRpm; label: "CPU FAN"; unit: "RPM" }
                 }
         }
@@ -305,7 +310,17 @@ PanelWindow {
                 spacing: 24
                 
                 Gauge { value: backend.volLevel; label: "VOL"; unit: "%" }
+                Rectangle {
+                    Layout.fillWidth: true
+                    height: 1
+                    color: Qt.rgba(backend.theme.accent.r, backend.theme.accent.g, backend.theme.accent.b, 0.25)
+                }
                 Gauge { value: backend.briLevel; label: "BRIGHT"; unit: "%" }
+                Rectangle {
+                    Layout.fillWidth: true
+                    height: 1
+                    color: Qt.rgba(backend.theme.accent.r, backend.theme.accent.g, backend.theme.accent.b, 0.25)
+                }
                 Gauge { value: backend.kbdBriLevel; label: "KBD"; unit: "%" }
             }
         }
@@ -323,6 +338,7 @@ PanelWindow {
             clip: true
 
             Rectangle {
+              //scanline
                 id: scanline
                 width: 3
                 height: rootPanel.height * 1.6
@@ -336,7 +352,7 @@ PanelWindow {
                     PauseAnimation { duration: 1800 }
                 }
             }
-
+/*
             Repeater {
                 model: 4
                 Shape {
@@ -356,7 +372,7 @@ PanelWindow {
                     }
                 }
             }
-
+*/
             ColumnLayout {
                 id: centerLayoutContainer
                 anchors.centerIn: parent
@@ -364,7 +380,17 @@ PanelWindow {
                 spacing: 14
 
                 RowLayout {
-                    Layout.fillWidth: true
+                  Layout.fillWidth: true
+                  Rectangle {
+                    //dot
+                        width: 8; height: 8; radius: 4
+                        color: backend.theme.accent
+                        SequentialAnimation on opacity {
+                            loops: Animation.Infinite
+                            NumberAnimation { from: 1.0; to: 0.25; duration: 900 }
+                            NumberAnimation { from: 0.25; to: 1.0; duration: 900 }
+                        }
+                    }
                     Text {
                         text: "B R I D G E   C O N T R O L"
                         color: backend.theme.accent
@@ -372,8 +398,10 @@ PanelWindow {
                         font.pixelSize: 15
                         font.letterSpacing: 3
                         Layout.fillWidth: true
+                        horizontalAlignment: Text.AlignHCenter
                     }
                     Rectangle {
+                      //dot
                         width: 8
                         height: 8
                         radius: 4
@@ -387,6 +415,7 @@ PanelWindow {
                 }
 
                 Rectangle {
+                  //line
                     Layout.fillWidth: true
                     height: 1
                     color: Qt.rgba(backend.theme.accent.r, backend.theme.accent.g, backend.theme.accent.b, 0.4)
@@ -503,11 +532,21 @@ PanelWindow {
                 spacing: 24
 
                 Gauge { value: backend.batteryPct; label: "BATTERY"; unit: "%" }
+                Rectangle {
+                    Layout.fillWidth: true
+                    height: 1
+                    color: Qt.rgba(backend.theme.accent.r, backend.theme.accent.g, backend.theme.accent.b, 0.25)
+                }
                 Gauge { 
                     value: backend.netMbps > 100 ? 100 : backend.netMbps
                     textOverride: backend.netMbps < 0 ? "--" : backend.netMbps.toFixed(1)
                     label: "NET DL"
                     unit: "Mb/s" 
+                  }
+                  Rectangle {
+                    Layout.fillWidth: true
+                    height: 1
+                    color: Qt.rgba(backend.theme.accent.r, backend.theme.accent.g, backend.theme.accent.b, 0.25)
                 }
                 Gauge { 
                     value: backend.netPing > 100 ? 100 : backend.netPing
@@ -558,6 +597,11 @@ PanelWindow {
                     value: backend.gpuTemp
                     label: "GPU TEMP"
                     unit: " °C"
+                  }
+                Rectangle {
+                    Layout.fillWidth: true
+                    height: 1
+                    color: Qt.rgba(backend.theme.accent.r, backend.theme.accent.g, backend.theme.accent.b, 0.25)
                 }
                 Gauge { value: backend.gpuFanRpm; label: "GPU FAN"; unit: "RPM" }
               }
