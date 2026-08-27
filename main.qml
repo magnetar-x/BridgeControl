@@ -233,7 +233,7 @@ PanelWindow {
             implicitHeight: leftleftCol.implicitHeight + 48
             color: Qt.rgba(backend.theme.background.r, backend.theme.background.g, backend.theme.background.b, 0.55)
             radius: 10
-            border.width: 1
+            border.width: 1.5
             border.color: Qt.rgba(backend.theme.accent.r, backend.theme.accent.g, backend.theme.accent.b, 0.5)
             clip: true
 
@@ -247,7 +247,7 @@ PanelWindow {
                     y: corner < 2 ? -1 : leftleftPanel.height - height + 1
                     ShapePath {
                         strokeColor: backend.theme.accent
-                        strokeWidth: 4
+                        strokeWidth: 2
                         fillColor: "transparent"
                         startX: corner % 2 === 0 ? 0 : 18
                         startY: corner < 2 ? 18 : 0
