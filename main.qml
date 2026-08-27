@@ -233,7 +233,7 @@ PanelWindow {
             implicitHeight: leftleftCol.implicitHeight + 48
             color: Qt.rgba(backend.theme.background.r, backend.theme.background.g, backend.theme.background.b, 0.55)
             radius: 10
-            border.width: 1.5
+            border.width: 1
             border.color: Qt.rgba(backend.theme.accent.r, backend.theme.accent.g, backend.theme.accent.b, 0.5)
             clip: true
 
