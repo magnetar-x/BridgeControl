@@ -554,15 +554,12 @@ PanelWindow {
                 id: rightrightCol
                 anchors.centerIn: parent
                 spacing: 24
-
-                Gauge { value: backend.batteryPct; label: "BATTERY"; unit: "%" }
                 Gauge { 
-                    value: backend.netMbps > 100 ? 100 : backend.netMbps
-                    textOverride: backend.netMbps < 0 ? "--" : backend.netMbps.toFixed(1)
-                    label: "NET DL"
-                    unit: "Mb/s" 
+                    value: gpuTemp
+                    label: "GPU TEMP"
+                    unit: " °C"
                 }
-                
+                Gauge { value: gpuFanRpm; label: "GPU FAN"; unit: "RPM" }
               }
             }
         //Right Most Gauge
