@@ -182,8 +182,91 @@ PanelWindow {
     // ── Root UI Layout ────────────────────────────────────────────────
     RowLayout {
         id: mainLayout
-        spacing: 32
+        spacing: 16
+        //Leftmost
+        //
+        Rectangle {
+            id: leftmostPanel
+            Layout.alignment: Qt.AlignVCenter
+            implicitWidth: leftmostCol.implicitWidth + 48
+            implicitHeight: leftmostCol.implicitHeight + 48
+            color: Qt.rgba(backend.theme.background.r, backend.theme.background.g, backend.theme.background.b, 0.55)
+            radius: 10
+            border.width: 1
+            border.color: Qt.rgba(backend.theme.accent.r, backend.theme.accent.g, backend.theme.accent.b, 0.5)
+            clip: true
 
+            Repeater {
+                model: 4
+                Shape {
+                    property int corner: index
+                    width: 18
+                    height: 18
+                    x: corner % 2 === 0 ? -1 : leftmostPanel.width - width + 1
+                    y: corner < 2 ? -1 : leftmostPanel.height - height + 1
+                    ShapePath {
+                        strokeColor: backend.theme.accent
+                        strokeWidth: 2
+                        fillColor: "transparent"
+                        startX: corner % 2 === 0 ? 0 : 18
+                        startY: corner < 2 ? 18 : 0
+                        PathLine { x: corner % 2 === 0 ? 0 : 18; y: corner < 2 ? 0 : 18 }
+                        PathLine { x: corner % 2 === 0 ? 18 : 0; y: corner < 2 ? 0 : 18 }
+                    }
+                }
+            }
+
+            ColumnLayout {
+                id: leftmostCol
+                anchors.centerIn: parent
+                spacing: 24
+                
+                Gauge { value: backend.cpuTemp; label: "CPU TEMP"; unit: " °C" }
+                }
+        }
+
+        //LL Gauge
+       Rectangle {
+            id: leftleftPanel
+            Layout.alignment: Qt.AlignVCenter
+            implicitWidth: leftleftCol.implicitWidth + 48
+            implicitHeight: leftleftCol.implicitHeight + 48
+            color: Qt.rgba(backend.theme.background.r, backend.theme.background.g, backend.theme.background.b, 0.55)
+            radius: 10
+            border.width: 1
+            border.color: Qt.rgba(backend.theme.accent.r, backend.theme.accent.g, backend.theme.accent.b, 0.5)
+            clip: true
+
+            Repeater {
+                model: 4
+                Shape {
+                    property int corner: index
+                    width: 18
+                    height: 18
+                    x: corner % 2 === 0 ? -1 : leftleftPanel.width - width + 1
+                    y: corner < 2 ? -1 : leftleftPanel.height - height + 1
+                    ShapePath {
+                        strokeColor: backend.theme.accent
+                        strokeWidth: 2
+                        fillColor: "transparent"
+                        startX: corner % 2 === 0 ? 0 : 18
+                        startY: corner < 2 ? 18 : 0
+                        PathLine { x: corner % 2 === 0 ? 0 : 18; y: corner < 2 ? 0 : 18 }
+                        PathLine { x: corner % 2 === 0 ? 18 : 0; y: corner < 2 ? 0 : 18 }
+                    }
+                }
+            }
+
+            ColumnLayout {
+                id: leftleftCol
+                anchors.centerIn: parent
+                spacing: 24
+                
+                Gauge { value: backend.cpuTemp; label: "CPU TEMP"; unit: " °C" }
+                Gauge { value: backend.cpuFanRpm; label: "CPU FAN"; unit: "RPM" }
+                }
+        }
+ 
         // Left Gauges Panel
         Rectangle {
             id: leftPanel
@@ -334,7 +417,7 @@ PanelWindow {
                     StatRow { label: "CPU FAN"; value: backend.cpuFanRpm >= 0 ? backend.cpuFanRpm.toFixed(0) + " RPM" : "N/A" }
                     StatRow { label: "GPU FAN"; value: backend.gpuFanRpm >= 0 ? backend.gpuFanRpm.toFixed(0) + " RPM" : "N/A" }
                     StatRow { label: "GFX MODE"; value: backend.gfxMode.toUpperCase() }
-                    StatRow { label: "BATTERY"; value: backend.batteryPct >= 0 ? backend.batteryPct.toFixed(0) + "% (" + backend.batteryState + ")" : "N/A" }
+                    StatRow { label: "NO PROC"; value: backend.noproc  }
                 }
 
                 Rectangle {
@@ -432,7 +515,97 @@ PanelWindow {
                     label: "PING"
                     unit: "ms" 
                 }
+              } 
             }
-        }
-    }
+        //Right Right Gauge
+        //
+         Rectangle {
+            id: rightrightPanel
+            Layout.alignment: Qt.AlignVCenter
+            implicitWidth: rightrightCol.implicitWidth + 48
+            implicitHeight: rightrightCol.implicitHeight + 48
+            color: Qt.rgba(backend.theme.background.r, backend.theme.background.g, backend.theme.background.b, 0.55)
+            radius: 10
+            border.width: 1
+            border.color: Qt.rgba(backend.theme.accent.r, backend.theme.accent.g, backend.theme.accent.b, 0.5)
+            clip: true
+
+            Repeater {
+                model: 4
+                Shape {
+                    property int corner: index
+                    width: 18
+                    height: 18
+                    x: corner % 2 === 0 ? -1 : rightrightPanel.width - width + 1
+                    y: corner < 2 ? -1 : rightrightPanel.height - height + 1
+                    ShapePath {
+                        strokeColor: backend.theme.accent
+                        strokeWidth: 2
+                        fillColor: "transparent"
+                        startX: corner % 2 === 0 ? 0 : 18
+                        startY: corner < 2 ? 18 : 0
+                        PathLine { x: corner % 2 === 0 ? 0 : 18; y: corner < 2 ? 0 : 18 }
+                        PathLine { x: corner % 2 === 0 ? 18 : 0; y: corner < 2 ? 0 : 18 }
+                    }
+                }
+            }
+
+            ColumnLayout {
+                id: rightrightCol
+                anchors.centerIn: parent
+                spacing: 24
+
+                Gauge { value: backend.batteryPct; label: "BATTERY"; unit: "%" }
+                Gauge { 
+                    value: backend.netMbps > 100 ? 100 : backend.netMbps
+                    textOverride: backend.netMbps < 0 ? "--" : backend.netMbps.toFixed(1)
+                    label: "NET DL"
+                    unit: "Mb/s" 
+                }
+                
+              }
+            }
+        //Right Most Gauge
+        //
+          Rectangle {
+            id: rightmostPanel
+            Layout.alignment: Qt.AlignVCenter
+            implicitWidth: rightmostCol.implicitWidth + 48
+            implicitHeight: rightmostCol.implicitHeight + 48
+            color: Qt.rgba(backend.theme.background.r, backend.theme.background.g, backend.theme.background.b, 0.55)
+            radius: 10
+            border.width: 1
+            border.color: Qt.rgba(backend.theme.accent.r, backend.theme.accent.g, backend.theme.accent.b, 0.5)
+            clip: true
+
+            Repeater {
+                model: 4
+                Shape {
+                    property int corner: index
+                    width: 18
+                    height: 18
+                    x: corner % 2 === 0 ? -1 : rightmostPanel.width - width + 1
+                    y: corner < 2 ? -1 : rightmostPanel.height - height + 1
+                    ShapePath {
+                        strokeColor: backend.theme.accent
+                        strokeWidth: 2
+                        fillColor: "transparent"
+                        startX: corner % 2 === 0 ? 0 : 18
+                        startY: corner < 2 ? 18 : 0
+                        PathLine { x: corner % 2 === 0 ? 0 : 18; y: corner < 2 ? 0 : 18 }
+                        PathLine { x: corner % 2 === 0 ? 18 : 0; y: corner < 2 ? 0 : 18 }
+                    }
+                }
+            }
+
+            ColumnLayout {
+                id: rightmostCol
+                anchors.centerIn: parent
+                spacing: 24
+
+                Gauge { value: backend.batteryPct; label: "BATTERY"; unit: "%" } 
+              }
+            }
+          }
 }
+

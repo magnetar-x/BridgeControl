@@ -23,6 +23,7 @@ Item {
     property string netName: "--"
     property bool btUp: false
     property int btDevices: 0
+    property int noproc : 0
 
     // Sidebar Metrics
     property int volLevel: -1
@@ -70,10 +71,22 @@ Item {
             rxProc.running = true
             pingProc.running = true
             themeNameProc.running = true
+            noprocProc.running = true
         }
     }
 
     // ── Data Fetchers ─────────────────────────────────────────────────
+     Process {
+        id: noprocProc
+        command: ["sh", "-c", "ps -e | wc -l"]
+        stdout: StdioCollector {
+            onStreamFinished: {
+              var n = text.trim()
+              backendRoot.noproc = parseInt(n)
+            }
+        }
+    }
+
     Process {
         id: colorsProc
         command: ["sh", "-c", "cat ~/.local/state/omarchy/current/theme/colors.toml 2>/dev/null || cat ~/.config/omarchy/current/theme/colors.toml 2>/dev/null"]
