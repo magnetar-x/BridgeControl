@@ -366,7 +366,7 @@ PanelWindow {
                 RowLayout {
                     Layout.fillWidth: true
                     Text {
-                        text: "S Y S T E M   H U D"
+                        text: "B R I D G E   C O N T R O L"
                         color: backend.theme.accent
                         font.family: "monospace"
                         font.pixelSize: 15
