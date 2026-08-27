@@ -24,6 +24,7 @@ Item {
     property bool btUp: false
     property int btDevices: 0
     property int noproc : 0
+    property string powmode : "--"
 
     // Sidebar Metrics
     property int volLevel: -1
@@ -72,11 +73,25 @@ Item {
             pingProc.running = true
             themeNameProc.running = true
             noprocProc.running = true
+            powmodeProc.running = true
         }
     }
 
     // ── Data Fetchers ─────────────────────────────────────────────────
-     Process {
+    
+    Process {
+        id: powmodeProc
+        command: ["sh", "-c", "asusctl profile get | grep 'Active' | awk '{print $3}'"]
+        stdout: StdioCollector {
+            onStreamFinished: {
+              var md = text.trim()
+              backendRoot.powmode = md
+          }
+        }
+    }
+
+
+    Process {
         id: noprocProc
         command: ["sh", "-c", "ps -e | wc -l"]
         stdout: StdioCollector {

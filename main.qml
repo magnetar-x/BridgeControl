@@ -415,7 +415,7 @@ PanelWindow {
                     StatRow { label: "CPU TEMP"; value: backend.cpuTemp >= 0 ? backend.cpuTemp.toFixed(0) + " °C" : "N/A" }
                     StatRow { label: "GPU TEMP"; value: backend.gpuTemp >= 0 ? backend.gpuTemp.toFixed(0) + " °C" : "N/A" }
                     StatRow { label: "CPU FAN"; value: backend.cpuFanRpm >= 0 ? backend.cpuFanRpm.toFixed(0) + " RPM" : "N/A" }
-                    StatRow { label: "GPU FAN"; value: backend.gpuFanRpm >= 0 ? backend.gpuFanRpm.toFixed(0) + " RPM" : "N/A" }
+                    StatRow { label: "POWER MODE"; value: backend.powmode }
                     StatRow { label: "GFX MODE"; value: backend.gfxMode.toUpperCase() }
                     StatRow { label: "NO PROC"; value: backend.noproc  }
                 }
