@@ -555,11 +555,11 @@ PanelWindow {
                 anchors.centerIn: parent
                 spacing: 24
                 Gauge { 
-                    value: gpuTemp
+                    value: backend.gpuTemp
                     label: "GPU TEMP"
                     unit: " °C"
                 }
-                Gauge { value: gpuFanRpm; label: "GPU FAN"; unit: "RPM" }
+                Gauge { value: backend.gpuFanRpm; label: "GPU FAN"; unit: "RPM" }
               }
             }
         //Right Most Gauge
