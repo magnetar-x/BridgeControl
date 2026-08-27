@@ -1,16 +1,18 @@
 {
   "schemaVersion": 1,
-  "id": "my.scifi.hud",
-  "name": "Sci-Fi HUD",
+  "id": "BridgeControl",
+  "name": "BridgeControl",
   "version": "1.0.0",
-  "author": "you",
+  "author": "Magnetar",
   "license": "MIT",
-  "description": "A cyberpunk/sci-fi style system monitor HUD that sits on the desktop wallpaper layer, showing CPU, GPU, RAM, disk, battery, temps, fan speed, network, and bluetooth status.",
+  "description": "A spaceship bridge command control type dashboard",
   "keywords": [
     "hud",
     "system-monitor",
     "scifi",
-    "cyberpunk"
+    "cyberpunk",
+    "spaceship",
+    "bridge"
   ],
   "kinds": [
     "overlay"
