@@ -283,7 +283,7 @@ PanelWindow {
             border.width: 1
             border.color: Qt.rgba(backend.theme.accent.r, backend.theme.accent.g, backend.theme.accent.b, 0.5)
             clip: true
-
+/*
             Repeater {
                 model: 4
                 Shape {
@@ -303,7 +303,7 @@ PanelWindow {
                     }
                 }
             }
-
+*/
             ColumnLayout {
                 id: leftCol
                 anchors.centerIn: parent
