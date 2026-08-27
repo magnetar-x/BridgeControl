@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "my.scifi.hud",
+  "name": "Sci-Fi HUD",
+  "version": "1.0.0",
+  "author": "you",
+  "license": "MIT",
+  "description": "A cyberpunk/sci-fi style system monitor HUD that sits on the desktop wallpaper layer, showing CPU, GPU, RAM, disk, battery, temps, fan speed, network, and bluetooth status.",
+  "keywords": [
+    "hud",
+    "system-monitor",
+    "scifi",
+    "cyberpunk"
+  ],
+  "kinds": [
+    "overlay"
+  ],
+  "keepLoaded": true,
+  "entryPoints": {
+    "overlay": "main.qml"
+  }
+}
