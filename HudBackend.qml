@@ -74,7 +74,7 @@ Item {
             themeNameProc.running = true
             noprocProc.running = true
             powmodeProc.running = true
-            paneloverdProc.rinning = true
+            paneloverdProc.running = true
         }
     }
 
