@@ -23,6 +23,7 @@ Item {
     property string netName: "--"
     property bool btUp: false
     property int btDevices: 0
+    //Later Additions
     property int noproc : 0
     property string powmode : "--"
     property string paneloverd : "--"
@@ -35,7 +36,6 @@ Item {
     property real netMbps: 0
     property real netPing: -1
     property string themeName: "Unknown"
-    //
     property real swapUsage: -1
     property real vramUsage: -1
     property var _prevCpu: null
