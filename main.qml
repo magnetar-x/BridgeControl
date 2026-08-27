@@ -221,7 +221,7 @@ PanelWindow {
                 anchors.centerIn: parent
                 spacing: 24
                 
-                Gauge { value: backend.cpuTemp; label: "CPU TEMP"; unit: " °C" }
+                Gauge { value: backend.cpuUsage; label: "CPU USAGE"; unit: "%" }
                 }
         }
 
@@ -412,8 +412,8 @@ PanelWindow {
                     spacing: 8
 
                     StatRow { label: "THEME"; value: backend.themeName.toUpperCase() }
-                    StatRow { label: "CPU TEMP"; value: backend.cpuTemp >= 0 ? backend.cpuTemp.toFixed(0) + " °C" : "N/A" }
-                    StatRow { label: "GPU TEMP"; value: backend.gpuTemp >= 0 ? backend.gpuTemp.toFixed(0) + " °C" : "N/A" }
+                    StatRow { label: "SYSTEM UPTIME"; value: backend.sysuptime }
+                    StatRow { label: "PACKAGE COUNT"; value: backend.pkgcnt }
                     StatRow { label: "PANEL OVERDRIVE"; value: backend.paneloverd }
                     StatRow { label: "POWER MODE"; value: backend.powmode }
                     StatRow { label: "GFX MODE"; value: backend.gfxMode.toUpperCase() }
@@ -600,7 +600,7 @@ PanelWindow {
                 anchors.centerIn: parent
                 spacing: 24
 
-                Gauge { value: backend.batteryPct; label: "BATTERY"; unit: "%" } 
+                Gauge { value: backend.gpuUsage; label: "GPU USAGE"; unit: "%" } 
               }
             }
           }

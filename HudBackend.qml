@@ -26,6 +26,8 @@ Item {
     property int noproc : 0
     property string powmode : "--"
     property string paneloverd : "--"
+    property int pkgcnt : 0
+    property string sysuptime : "--"
     // Sidebar Metrics
     property int volLevel: -1
     property int briLevel: -1
@@ -75,12 +77,37 @@ Item {
             noprocProc.running = true
             powmodeProc.running = true
             paneloverdProc.running = true
+            sysuptimeProc.running = true
+            pkgcntProc.running = true
         }
     }
 
     // ── Data Fetchers ─────────────────────────────────────────────────
     
-     Process {
+    Process {
+        id: sysuptimeProc
+        command: ["sh", "-c", "uptime -p | cut -c 4-"]
+        stdout: StdioCollector {
+            onStreamFinished: {
+              var md = text.trim()
+              backendRoot.sysuptime = md
+          }
+        }
+    }
+    
+    Process {
+        id: pkgcntProc
+        command: ["sh", "-c", "pacman -Qq | wc -l"]
+        stdout: StdioCollector {
+            onStreamFinished: {
+              var md = text.trim()
+              backendRoot.pkgcnt = parseInt(md)
+          }
+        }
+    }
+
+
+    Process {
         id: paneloverdProc
         command: ["sh", "-c", "output=$(asusctl armoury get panel_overdrive | grep '(1)' 2>&1); [ -z '$output' ] && echo 'OFF' || echo 'ON' "]
         stdout: StdioCollector {
