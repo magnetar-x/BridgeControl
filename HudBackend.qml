@@ -25,7 +25,7 @@ Item {
     property int btDevices: 0
     property int noproc : 0
     property string powmode : "--"
-
+    property string paneloverd : "--"
     // Sidebar Metrics
     property int volLevel: -1
     property int briLevel: -1
@@ -74,11 +74,24 @@ Item {
             themeNameProc.running = true
             noprocProc.running = true
             powmodeProc.running = true
+            paneloverdProc.rinning = true
         }
     }
 
     // ── Data Fetchers ─────────────────────────────────────────────────
     
+     Process {
+        id: paneloverdProc
+        command: ["sh", "-c", "output=$(asusctl armoury get panel_overdrive | grep '(1)' 2>&1); [ -z '$output' ] && echo 'OFF' || echo 'ON' "]
+        stdout: StdioCollector {
+            onStreamFinished: {
+              var md = text.trim()
+              backendRoot.paneloverd = md
+          }
+        }
+    }
+
+
     Process {
         id: powmodeProc
         command: ["sh", "-c", "asusctl profile get | grep 'Active' | awk '{print $3}'"]
