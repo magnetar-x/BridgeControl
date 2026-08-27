@@ -35,7 +35,9 @@ Item {
     property real netMbps: 0
     property real netPing: -1
     property string themeName: "Unknown"
-
+    //
+    property real swapUsage: -1
+    property real vramUsage: -1
     property var _prevCpu: null
     property var _prevRx: null
 
@@ -79,11 +81,43 @@ Item {
             paneloverdProc.running = true
             sysuptimeProc.running = true
             pkgcntProc.running = true
+            swapProc.running = true
+            vramProc.running = true
         }
     }
 
     // ── Data Fetchers ─────────────────────────────────────────────────
     
+    Process {
+        id: vramProc
+        command: ["sh", "-c", 
+            "mode=$(supergfxctl -g 2>/dev/null); " +
+            "if [ \"$mode\" = 'Integrated' ]; then echo 'OFF'; " +
+            "else nvidia-smi --query-gpu=memory.used,memory.total --format=csv,noheader,nounits 2>/dev/null | awk -F, '{if ($2 > 0) print ($1/$2)*100; else print -1}' || echo 'NA'; fi"]
+        stdout: StdioCollector {
+            onStreamFinished: {
+                var t = text.trim()
+                if (t === "OFF" || t === "NA" || t === "") {
+                    backendRoot.vramUsage = -1
+                } else {
+                    var v = parseFloat(t)
+                    backendRoot.vramUsage = isNaN(v) ? -1 : v
+                }
+            }
+        }
+    }
+    
+    Process {
+        id: swapProc
+        command: ["sh", "-c", "free -b | awk '/^Swap:/ {if ($2 > 0) print ($3/$2)*100; else print -1}'"]
+        stdout: StdioCollector {
+            onStreamFinished: {
+                var v = parseFloat(text.trim())
+                backendRoot.swapUsage = isNaN(v) ? -1 : v
+            }
+        }
+      }
+
     Process {
         id: sysuptimeProc
         command: ["sh", "-c", "uptime -p | cut -c 4-"]

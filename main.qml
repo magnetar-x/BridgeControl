@@ -395,8 +395,8 @@ PanelWindow {
                 RowLayout {
                     Layout.fillWidth: true
                     spacing: 8
-                    Gauge { value: backend.cpuUsage; label: "CPU" }
-                    Gauge { value: backend.gpuUsage; label: "GPU" }
+                    Gauge { value: backend.vramUsage; label: "VRAM" }
+                    Gauge { value: backend.swapUsage; label: "SWAP" }
                     Gauge { value: backend.ramUsage; label: "RAM" }
                     Gauge { value: backend.diskUsage; label: "DISK" }
                 }
