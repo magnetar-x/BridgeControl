@@ -293,7 +293,7 @@ PanelWindow {
                     y: corner < 2 ? -1 : leftPanel.height - height + 1
                     ShapePath {
                         strokeColor: backend.theme.accent
-                        strokeWidth: 5
+                        strokeWidth: 2
                         fillColor: "transparent"
                         startX: corner % 2 === 0 ? 0 : 18
                         startY: corner < 2 ? 18 : 0
