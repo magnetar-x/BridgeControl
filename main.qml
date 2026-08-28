@@ -4,16 +4,11 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Wayland
 
-// ─────────────────────────────────────────────────────────────────────────
-// my.scifi.hud :: main.qml
-// A cyberpunk-style system HUD purely for UI Layout. 
-// Data logic is handled entirely by HudBackend.qml.
-// ─────────────────────────────────────────────────────────────────────────
-
+//Dashboard frontend
 PanelWindow {
     id: hud
 
-    // Sit directly on the desktop, below normal windows
+    // force dash on desktop
     WlrLayershell.layer: WlrLayershell.Background
     WlrLayershell.exclusiveZone: -1
     WlrLayershell.keyboardFocus: WlrKeyboardFocus.None
@@ -31,18 +26,18 @@ PanelWindow {
         bottom: 48
     }
 
-    // Shrink-wrap the window tightly to the main layout
+    // Shrink-wrap 
     implicitWidth: mainLayout.implicitWidth
     implicitHeight: mainLayout.implicitHeight
     color: "transparent"
     mask: Region {}
 
-    // ── Instantiate the Data Engine ───────────────────────────────────
+    // Data Engine init
     HudBackend {
         id: backend
     }
 
-    // ── UI Components ─────────────────────────────────────────────────
+    // UI Components
     component Gauge: Item {
         id: gaugeRoot
         property real value: 0          
@@ -179,7 +174,7 @@ PanelWindow {
         }
     }
 
-    // ── Root UI Layout ────────────────────────────────────────────────
+    //Root UI Layout
     RowLayout {
         id: mainLayout
         spacing: 16
