@@ -10,6 +10,8 @@ This is my weekend project that I built for the sake of having an aesthetic dash
 ## Attributes
 - Translucent dashboard background.
 - Automatic color scheme adjustment according to Omarchy theme.
+- Key bind 'SUPER + H' added to toggle the dashboard on/off to lower power and CPU usage.
+- Auto starts on system start.
 
 ## Note
 - This is a sci-fi themed dynamic dashboard specifically created for ASUS Laptops.
