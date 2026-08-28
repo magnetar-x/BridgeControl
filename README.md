@@ -1,8 +1,10 @@
 # A Hyprland dashboard specifically built for ASUS Laptops
 ![Sakura](https://github.com/magnetar-x/BridgeControl/blob/main/Assets_README/Sakura_mochi.GIF)
+![Osaka](https://github.com/magnetar-x/BridgeControl/blob/main/Assets_README/Osake_jade.GIF)
 ![city783](https://github.com/magnetar-x/BridgeControl/blob/main/Assets_README/City_783.GIF)
-<img width="1675" height="623" alt="image" src="https://github.com/user-attachments/assets/7c48b04c-f6b2-478a-816f-8c68a37c1809" />
-<img width="1660" height="633" alt="image" src="https://github.com/user-attachments/assets/49781c09-0afc-4a86-baf2-e5e8ac2a11f9" />
+![Hackerman](https://github.com/magnetar-x/BridgeControl/blob/main/Assets_README/Hackerman.GIF)
+![Ethereal](https://github.com/magnetar-x/BridgeControl/blob/main/Assets_README/Ethereal.GIF)
+![Tokyo](https://github.com/magnetar-x/BridgeControl/blob/main/Assets_README/Tokyo_Night.GIF)
 
 ## About
 This is my weekend project that I built for the sake of having an aesthetic dashboard to monitor my system.
