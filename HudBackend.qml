@@ -5,7 +5,7 @@ import Quickshell.Io
 Item {
     id: backendRoot
 
-    // ── State Properties ───────────────────────────────────────────────
+    // State Properties
     property real cpuUsage: 0
     property real ramUsage: 0
     property real ramUsedGb: 0
@@ -41,7 +41,7 @@ Item {
     property var _prevCpu: null
     property var _prevRx: null
 
-    // ── Theme Data ────────────────────────────────────────────────────
+    //Theme Data
     property alias theme: themeObj
     QtObject {
         id: themeObj
@@ -52,7 +52,7 @@ Item {
         property color urgent: "#ff4d4d"
     }
 
-    // ── Polling ───────────────────────────────────────────────────────
+    // Polling
     Timer {
         interval: 1000
         running: true
@@ -86,7 +86,7 @@ Item {
         }
     }
 
-    // ── Data Fetchers ─────────────────────────────────────────────────
+    //Data Fetchers
     
     Process {
         id: vramProc
