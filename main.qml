@@ -46,6 +46,17 @@ PanelWindow {
         property string textOverride: ""
         property real size: 84
 
+        readonly property real targetValue: gaugeRoot.value < 0 ? 0 : gaugeRoot.value
+        property real animatedValue: targetValue
+        Behavior on animatedValue {
+            NumberAnimation {
+                duration: 800
+                easing.type: Easing.OutCubic
+            }
+        }
+
+        readonly property real sweepAngle: 260 * Math.min(Math.max(gaugeRoot.animatedValue, 0), 100) / 100
+
         implicitWidth: size
         implicitHeight: size + 22
 
@@ -83,7 +94,7 @@ PanelWindow {
                     radiusX: ring.width / 2 - 6
                     radiusY: ring.height / 2 - 6
                     startAngle: -220
-                    sweepAngle: gaugeRoot.value < 0 ? 0 : 260 * Math.min(gaugeRoot.value, 100) / 100
+                    sweepAngle: gaugeRoot.sweepAngle
                 }
             }
 
@@ -98,7 +109,7 @@ PanelWindow {
                     radiusX: ring.width / 2 - 6
                     radiusY: ring.height / 2 - 6
                     startAngle: -220
-                    sweepAngle: gaugeRoot.value < 0 ? 0 : 260 * Math.min(gaugeRoot.value, 100) / 100
+                    sweepAngle: gaugeRoot.sweepAngle
                 }
             }
         }
@@ -118,7 +129,7 @@ PanelWindow {
             spacing: 0
             Text {
                 anchors.horizontalCenter: parent.horizontalCenter
-                text: gaugeRoot.textOverride !== "" ? gaugeRoot.textOverride : (gaugeRoot.value < 0 ? "--" : Math.round(gaugeRoot.value).toString())
+                text: gaugeRoot.textOverride !== "" ? gaugeRoot.textOverride : (gaugeRoot.value < 0 ? "--" : Math.round(gaugeRoot.animatedValue).toString())
                 color: backend.theme.foreground
                 font.family: "monospace"
                 font.pixelSize: 20
